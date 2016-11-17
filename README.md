@@ -36,9 +36,15 @@ New-AzureRmResourceGroupDeployment -Name <DeploymentName> -ResourceGroupName <Re
 
 
 ## Parameters
-SSHKeyData - Public Key - Copy/Past frome .ssh/id_rsa.pub - pbcopy < ~/.ssh/id_rsa.pub
-PoolId - From RREL - subscription-manager list --available
+For OsX:
+SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - pbcopy < ~/.ssh/id_rsa.pub
+PoolId - From RHEL - subscription-manager list --available
 SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | pbcopy
+
+For RHEL/Fedora/Centos:
+SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - xclip -selection clipboard < ~/.ssh/id_rsa.pub
+PoolId - From RHEL - subscription-manager list --available
+SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | xclip -selection clipboard
 
 ### Input Parameters
 
@@ -64,3 +70,13 @@ SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | pbcopy
 ------
 
 This template deploys a RedHat Openshift Enterprise cluster on Azure.
+
+Attribution:
+Thanks to:
+Daniel Falkner - Microsoft Germany - For original templates
+Harold Wong<Harold.Wong@microsoft.com> for his great support.
+Ivan McKinley
+
+For full commit history: Please see - https://github.com/glennswest/azure-openshift
+
+

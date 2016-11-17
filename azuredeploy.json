@@ -37,17 +37,6 @@
         "description" : "Number of Openshift Nodes to deploy (max 30)"
       }
     },
-    "image" : {
-      "type" : "string",
-      "allowedValues" : [
-        "centos",
-        "rhel"
-      ],
-      "defaultValue" : "rhel",
-      "metadata" : {
-        "description" : "OS to use. Centos or Redhat Enterprise Linux"
-      }
-    },
     "masterVMSize" : {
       "type" : "string",
       "defaultValue" : "Standard_DS3",
@@ -277,12 +266,6 @@
     "infranodeSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('infranodesubnetName'))]",
     "nodeSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('nodesubnetName'))]",
     "masterSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('mastersubnetName'))]",
-    "centos" : {
-      "publisher" : "Openlogic",
-      "offer" : "CentOS",
-      "sku" : "7.2",
-      "version" : "latest"
-    },
     "rhel" : {
       "publisher" : "RedHat",
       "offer" : "RHEL",
@@ -416,7 +399,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -475,7 +458,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           }
         }
       }
@@ -530,7 +513,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -584,7 +567,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           }
         }
       }
@@ -642,7 +625,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -710,7 +693,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -777,7 +760,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -885,7 +868,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           },
           "sshPrivateData" : {
             "value" : "[parameters('sshPrivateData')]"
@@ -930,7 +913,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           }
         }
       }
@@ -972,7 +955,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
+            "value" : "rhel"
           }
         }
       }

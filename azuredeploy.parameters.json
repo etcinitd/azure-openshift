@@ -17,9 +17,6 @@
     "numberOfNodes" : {
       "value" : 3
     },
-    "image" : {
-      "value" : "rhel"
-    },
     "RHNUserName" : {
       "value" : ""
     },

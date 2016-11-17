@@ -30,17 +30,6 @@
         "description" : "Number of Openshift Nodes to deploy (max 30)"
       }
     },
-    "image" : {
-      "type" : "string",
-      "allowedValues" : [
-        "centos",
-        "rhel"
-      ],
-      "defaultValue" : "rhel",
-      "metadata" : {
-        "description" : "OS to use. Centos or Redhat Enterprise Linux"
-      }
-    },
     "nodeVMSize" : {
       "type" : "string",
       "defaultValue" : "Standard_DS12",
@@ -156,12 +145,6 @@
     "infranodeSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('infranodesubnetName'))]",
     "nodeSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('nodesubnetName'))]",
     "masterSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('mastersubnetName'))]",
-    "centos" : {
-      "publisher" : "Openlogic",
-      "offer" : "CentOS",
-      "sku" : "7.2",
-      "version" : "latest"
-    },
     "rhel" : {
       "publisher" : "RedHat",
       "offer" : "RHEL",

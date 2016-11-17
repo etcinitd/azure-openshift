@@ -1,6 +1,6 @@
 # RedHat Openshift Enterprise cluster on Azure
 
-When creating the RedHat Openshift Enterprise Cluster on Azure, you will need a SSH RSA key for access. 
+When creating the RedHat Openshift Enterprise Cluster on Azure, you will need a SSH RSA key for access.
 
 ## SSH Key Generation
 
@@ -47,9 +47,8 @@ SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | pbcopy
 | adminUsername  | String       | Username for SSH Login and Openshift Webconsole |
 |  adminPassword | SecureString | Password for the Openshift Webconsole |
 | sshKeyData     | String       | Public SSH Key for the Virtual Machines |
-| masterDnsName  | String       | DNS Prefix for the Openshift Master / Webconsole | 
+| masterDnsName  | String       | DNS Prefix for the Openshift Master / Webconsole |
 | numberOfNodes  | Integer      | Number of Openshift Nodes to create |
-| image | String | Operating System to use. RHEL or CentOs |
 | masterVMSize | String | The size of the Master Virtual Machine |
 | infranodeVMSize| String | The size of the Infranode Virtual Machine |
 | nodeVMSize| String | The size of the each Node Virtual Machine |

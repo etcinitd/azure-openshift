@@ -31,12 +31,11 @@
     "image" : {
       "type" : "string",
       "allowedValues" : [
-        "centos",
         "rhel"
       ],
       "defaultValue" : "rhel",
       "metadata" : {
-        "description" : "OS to use. Centos or Redhat Enterprise Linux"
+        "description" : "OS to use. Redhat Enterprise Linux"
       }
     },
     "masterVMSize" : {
@@ -141,12 +140,6 @@
     "infranodeSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('infranodesubnetName'))]",
     "nodeSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('nodesubnetName'))]",
     "masterSubnetRef" : "[concat(variables('vnetId'), '/subnets/', variables('mastersubnetName'))]",
-    "centos" : {
-      "publisher" : "Openlogic",
-      "offer" : "CentOS",
-      "sku" : "7.2",
-      "version" : "latest"
-    },
     "rhel" : {
       "publisher" : "RedHat",
       "offer" : "RHEL",

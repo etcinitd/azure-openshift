@@ -226,12 +226,10 @@ cat <<EOF > /home/${AUSERNAME}/quota.yml
   vars:
     description: "Fix EP Storage/Quota"
   tasks:
-  - name: Format xfs on disk
-    filesystem: dev=/dev/sdd fstype=xfs force=yes
-  - name: Update Mount to Handle Quota
-    mount: fstype=xfs name=/var/lib/origin/openshift.local/volumes src=/dev/sdd opts="gquota" state="mounted"
   - name: Change Node perFSGroup Qouta Setting
-    lineinfile: dest=/etc/origin/node/node-config.yaml regexp=^perFSGroup line="    perFSGroup:512Mi"
+    lineinfile: dest=/etc/origin/noce/node-config.yaml regexp=^perFSGroup: line="    perFSGroup:512Mi"
+  - name: Update Mount to Handle Quota
+    mount: fstype=xfs name=/var/lib/origin/openshift.local/volumes src=/dev/sdd option="gquota" state="mounted"
 EOF
 
 

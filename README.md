@@ -1,6 +1,6 @@
 # Red Hat OpenShift Container Platform on Azure
 
-When creating the RedHat Openshift Enterprise Cluster on Azure, you will need a SSH RSA key for access.
+When creating the Red Hat Openshift Container Platform on Azure, you will need a SSH RSA key for access.
 
 ## SSH Key Generation
 
@@ -8,8 +8,8 @@ When creating the RedHat Openshift Enterprise Cluster on Azure, you will need a 
 2. [Linux](ssh_linux.md)
 3. [Mac](ssh_mac.md)
 
-## Create the cluster
-### Create the cluster on the Azure Portal
+## Create the Installation
+### Create the Installation on the Azure Portal
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fglennswest%2Fazure-openshift%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>

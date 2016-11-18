@@ -1,6 +1,6 @@
 # Red Hat OpenShift Container Platform on Azure
 
-When creating the Red Hat Openshift Container Platform on Azure, you will need a SSH RSA key for access.
+When creating the Red Hat OpenShift Container Platform on Azure, you will need a SSH RSA key for access.
 
 ## SSH Key Generation
 

@@ -22,14 +22,14 @@ When creating the RedHat Openshift Enterprise Cluster on Azure, you will need a 
 
 ## Parameters
 For OsX:
-SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - pbcopy < ~/.ssh/id_rsa.pub
-PoolId - From RHEL - subscription-manager list --available
-SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | pbcopy
+1. SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - pbcopy < ~/.ssh/id_rsa.pub
+2. PoolId - From RHEL - subscription-manager list --available
+3. SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | pbcopy
 
 For RHEL/Fedora/Centos:
-SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - xclip -selection clipboard < ~/.ssh/id_rsa.pub
-PoolId - From RHEL - subscription-manager list --available
-SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | xclip -selection clipboard
+1. SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - xclip -selection clipboard < ~/.ssh/id_rsa.pub
+2. PoolId - From RHEL - subscription-manager list --available
+3. SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | xclip -selection clipboard
 
 ### Input Parameters
 

@@ -22,6 +22,7 @@ When creating the RedHat Openshift Enterprise Cluster on Azure, you will need a 
 
 ## Parameters
 For OsX:
+
 1. SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - pbcopy < ~/.ssh/id_rsa.pub
 
 2. PoolId - From RHEL - subscription-manager list --available

@@ -37,6 +37,16 @@
         "description" : "Number of Openshift Nodes to deploy (max 30)"
       }
     },
+    "image" : {
+      "type" : "string",
+      "allowedValues" : [
+        "rhel"
+      ],
+      "defaultValue" : "rhel",
+      "metadata" : {
+        "description" : "OS to use.Redhat Enterprise Linux"
+      }
+    },
     "masterVMSize" : {
       "type" : "string",
       "defaultValue" : "Standard_DS3",
@@ -399,7 +409,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -458,7 +468,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           }
         }
       }
@@ -513,7 +523,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -567,7 +577,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           }
         }
       }
@@ -625,7 +635,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -693,7 +703,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -760,7 +770,7 @@
             "value" : "[reference('infranode1').outputs.pip.value]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           },
           "RHNUserName" : {
             "value" : "[parameters('RHNUserName')]"
@@ -868,7 +878,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           },
           "sshPrivateData" : {
             "value" : "[parameters('sshPrivateData')]"
@@ -913,7 +923,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           }
         }
       }
@@ -955,7 +965,7 @@
             "value" : "[variables('baseTemplateUrl')]"
           },
           "imageReference" : {
-            "value" : "rhel"
+            "value" : "[variables(parameters('image'))]"
           }
         }
       }
@@ -1029,3 +1039,4 @@
     }
   }
 }
+

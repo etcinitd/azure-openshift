@@ -5,19 +5,32 @@
 ![Terminal ScreenShot][terminal]
 2. Enter the commands:
 ```bash
-mkdir ~/.ssh
-chmod 700 ~/.ssh
 ssh-keygen -t rsa
 ```
 3. At this point you will be prompted:
 
 ```bash
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/b/.ssh/id_rsa):
+Enter file in which to save the key (/Users/test/.ssh/id_rsa):
+Created directory '/Users/test/.ssh'.
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
-Your identification has been saved in /home/b/.ssh/id_rsa.
-Your public key has been saved in /home/b/.ssh/id_rsa.pub.
+Your identification has been saved in /Users/test/.ssh/id_rsa.
+Your public key has been saved in /Users/test/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:2KeBdOEN/empJoqPYXuSMv5elJbS0KMwlcQBX4KuSPM test@dhcp-65-33.sin.redhat.com
+The keys randomart image is:
++---[RSA 2048]----+
+|  .==o. o.       |
+|  .oo+ . +.      |
+| .o o + o .. .   |
+| o.o = O    o    |
+|o.o o O S .. .   |
+|o  E +   +  o    |
+|    o.. .  .     |
+|  o.o*. . o      |
+| ..=*+o. o       |
++----[SHA256]-----+
 ```
 
 Your public and private keys are now available in your home folder under the .ssh directory.

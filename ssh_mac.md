@@ -1,7 +1,8 @@
 # Red Hat OpenShift Container Platform on Azure
 
 ## SSH Key Generation - Linux/Centos/Fedora
-1. Go to bash/command line/terminal on your client device.
+1. Open the Terminal in the Application/Utilities folder.
+![Terminal ScreenShot][terminal]
 2. Enter the commands:
 ```bash
 mkdir ~/.ssh
@@ -20,3 +21,6 @@ Your public key has been saved in /home/b/.ssh/id_rsa.pub.
 ```
 
 Your public and private keys are now available in your home folder under the .ssh directory.
+
+
+[terminal]:  https://github.com/glennswest/azure-openshift/raw/master/images/terminal.png

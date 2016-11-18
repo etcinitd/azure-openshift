@@ -4,9 +4,9 @@ When creating the RedHat Openshift Enterprise Cluster on Azure, you will need a 
 
 ## SSH Key Generation
 
-1. [Windows](ssh_windows.md) 
-2. Linux - https://help.ubuntu.com/community/SSH/OpenSSH/Keys#Generating_RSA_Keys
-3. Mac - https://help.github.com/articles/generating-ssh-keys/#platform-mac
+1. [Windows](ssh_windows.md)
+2. [Linux](ssh_linux.md)
+3. [Mac](ssh_mac.md) 
 
 ## Create the cluster
 ### Create the cluster on the Azure Portal

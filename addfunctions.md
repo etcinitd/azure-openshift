@@ -10,7 +10,6 @@ These additional templates are untested and unverified at this time.
 </a>
 
 ### Add Test Single Node
-Single VM Test Machine - Experimental
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fglennswest%2Fazure-openshift%2Fmaster%2Fonenode.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>

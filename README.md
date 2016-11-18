@@ -21,6 +21,7 @@ When creating the RedHat Openshift Enterprise Cluster on Azure, you will need a 
 [Experimental Additional Functions](addfunctions.md)
 
 ## Parameters
+
 For OsX:
 
 1. SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - pbcopy < ~/.ssh/id_rsa.pub
@@ -30,6 +31,7 @@ For OsX:
 3. SSHPrivate Data - Base64 Encoded id_rsa - cat ~/.ssh/id_rsa | base64 | pbcopy
 
 For RHEL/Fedora/Centos:
+
 1. SSHKeyData - Public Key - Copy/Paste from .ssh/id_rsa.pub - xclip -selection clipboard < ~/.ssh/id_rsa.pub
 
 2. PoolId - From RHEL - subscription-manager list --available

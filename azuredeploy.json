@@ -254,7 +254,7 @@
     }
   },
   "variables" : {
-    "baseTemplateUrl" : "https://raw.githubusercontent.com/glennswest/azure-openshift/master/",
+    "baseTemplateUrl" : "https://raw.githubusercontent.com/etcinitd/azure-openshift/master/",
     "baseVMachineTemplateUriInfranode" : "[concat(variables('baseTemplateUrl'), 'infranode.json')]",
     "baseVMachineTemplateUriNode" : "[concat(variables('baseTemplateUrl'), 'node.json')]",
     "baseVMachineTemplateUriMaster" : "[concat(variables('baseTemplateUrl'), 'master.json')]",
@@ -557,6 +557,9 @@
         "parameters" : {
           "vmName" : {
             "value" : "infranode1"
+          },
+          "dnsName" : {
+            "value" : "[concat(resourceGroup().name,'i1')]"
           },
           "sa" : {
             "value" : "[variables('infranodeStorageName')]"
@@ -904,6 +907,9 @@
           "vmName" : {
             "value" : "infranode2"
           },
+          "dnsName" : {
+            "value" : "[concat(resourceGroup().name,'i2')]"
+          },
           "sa" : {
             "value" : "[variables('infranodeStorageName')]"
           },
@@ -945,6 +951,9 @@
         "parameters" : {
           "vmName" : {
             "value" : "infranode3"
+          },
+          "dnsName" : {
+            "value" : "[concat(resourceGroup().name,'i3')]"
           },
           "sa" : {
             "value" : "[variables('infranodeStorageName')]"
@@ -1039,4 +1048,3 @@
     }
   }
 }
-

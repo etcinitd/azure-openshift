@@ -122,7 +122,7 @@
     }
   },
   "variables" : {
-    "baseTemplateUrl" : "https://raw.githubusercontent.com/glennswest/azure-openshift/master/",
+    "baseTemplateUrl" : "https://raw.githubusercontent.com/etcinitd/azure-openshift/master/",
     "location" : "[resourceGroup().location]",
     "virtualNetworkName" : "openshiftVnet",
     "addressPrefix" : "10.0.0.0/16",

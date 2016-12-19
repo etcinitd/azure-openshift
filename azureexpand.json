@@ -123,7 +123,7 @@
     }
   },
   "variables" : {
-    "baseTemplateUrl" : "https://raw.githubusercontent.com/glennswest/azure-openshift/master/",
+    "baseTemplateUrl" : "https://raw.githubusercontent.com/etcinitd/azure-openshift/master/",
     "baseVMachineTemplateUriInfranode" : "[concat(variables('baseTemplateUrl'), 'infranode.json')]",
     "baseVMachineTemplateUriNode" : "[concat(variables('baseTemplateUrl'), 'node.json')]",
     "baseVMachineTemplateUriMaster" : "[concat(variables('baseTemplateUrl'), 'master.json')]",

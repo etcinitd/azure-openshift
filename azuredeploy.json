@@ -280,7 +280,7 @@
       "publisher" : "RedHat",
       "offer" : "RHEL",
       "sku" : "7.2",
-      "version" : "latest"
+      "version" : "7.2.20161026"
     },
     "baseVMachineTemplateUriBastion" : "[concat(variables('baseTemplateUrl'), 'bastion.json')]",
     "baseVMachineTemplateUriLogging" : "[concat(variables('baseTemplateUrl'), 'logging.json')]",

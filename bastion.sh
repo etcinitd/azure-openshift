@@ -68,6 +68,7 @@ chmod +x /root/setup_ssmtp.sh
 # Ignore Error If It Dont work
 /root/setup_ssmtp.sh ${AUSERNAME} ${PASSWORD} ${RHNUSERNAME} || true
 
+echo "${RESOURCEGROUP} Bastion Host is starting software update"
 echo "${RESOURCEGROUP} Bastion Host is starting software update" | mail -s "${RESOURCEGROUP} Bastion Software Install" ${RHNUSERNAME} || true
 # Continue Setting Up Bastion
 subscription-manager unregister
@@ -221,9 +222,9 @@ cat <<EOF > /home/${AUSERNAME}/quota.yml
     description: "Fix EP Storage/Quota"
   tasks:
   - name: Change Node perFSGroup Qouta Setting
-    lineinfile: dest=/etc/origin/noce/node-config.yaml regexp=^perFSGroup: line="    perFSGroup:512Mi"
+    lineinfile: 'dest=/etc/origin/node/node-config.yaml regexp="^(.*)perFSGroup:(.*)$" line="    perFSGroup: 512Mi"'
   - name: Update Mount to Handle Quota
-    mount: fstype=xfs name=/var/lib/origin/openshift.local/volumes src=/dev/sdd option="gquota" state="mounted"
+    mount: fstype=xfs name=/var/lib/origin/openshift.local/volumes src=/dev/sdd backrefs=yes opts="gquota" state="mounted"
 EOF
 
 
@@ -280,13 +281,15 @@ export ANSIBLE_HOST_KEY_CHECKING=False
 sleep 120
 ansible all --module-name=ping > ansible-preinstall-ping.out || true
 ansible-playbook  /home/${AUSERNAME}/subscribe.yml
+echo "${RESOURCEGROUP} Bastion Host is starting ansible BYO"
 echo "${RESOURCEGROUP} Bastion Host is starting ansible BYO" | mail -s "${RESOURCEGROUP} Bastion BYO Install" ${RHNUSERNAME} || true
 ansible-playbook  /usr/share/ansible/openshift-ansible/playbooks/byo/config.yml < /dev/null &> byo.out
 
 # ssh gwest@master1 oadm registry --selector=region=infra
 # ssh gwest@master1 oadm router --selector=region=infra
 wget http://master1:8443/api > healtcheck.out
-ansible-playbook /home/${AUSERNAME}/quota.yml
+echo "${RESOURCEGROUP} Bastion Host is starting post-install playbooks"
+# ERR ansible-playbook /home/${AUSERNAME}/quota.yml
 ansible-playbook /home/${AUSERNAME}/postinstall.yml
 ansible-playbook /home/${AUSERNAME}/setupiscsi.yml
 cd /root
@@ -298,6 +301,7 @@ cp /tmp/kube-config /home/${AUSERNAME}/.kube/config
 chown --recursive ${AUSERNAME} /home/${AUSERNAME}/.kube
 rm -f /tmp/kube-config
 ansible-playbook /home/${AUSERNAME}/setupiscsi.yml
+echo "${RESOURCEGROUP} Installation Is Complete"
 echo "${RESOURCEGROUP} Installation Is Complete" | mail -s "${RESOURCEGROUP} Install Complete" ${RHNUSERNAME} || true
 EOF
 
@@ -331,6 +335,7 @@ EOF
 
 cd /home/${AUSERNAME}
 chmod 755 /home/${AUSERNAME}/openshift-install.sh
-echo "${RESOURCEGROUP} Bastion Host is starting Openshift Install" || mail -s "${RESOURCEGROUP} Bastion Openshift Install Starting" ${RHNUSERNAME} || true
+echo "${RESOURCEGROUP} Bastion Host is starting Openshift Install"
+echo "${RESOURCEGROUP} Bastion Host is starting Openshift Install" | mail -s "${RESOURCEGROUP} Bastion Openshift Install Starting" ${RHNUSERNAME} || true
 /home/${AUSERNAME}/openshift-install.sh &> /home/${AUSERNAME}/openshift-install.out &
 exit 0

@@ -130,7 +130,7 @@ openshift_master_cluster_public_hostname=${RESOURCEGROUP}.trafficmanager.net
 
 # default storage plugin dependencies to install, by default the ceph and
 # glusterfs plugin dependencies will be installed, if available.
-osn_storage_plugin_deps=['iscsi']
+# osn_storage_plugin_deps=['iscsi']
 
 [masters]
 master1 openshift_node_labels="{'role': 'master'}"
@@ -149,7 +149,6 @@ master3 openshift_node_labels="{'region':'master','zone':'default'}"
 node[01:${NODECOUNT}] openshift_node_labels="{'region': 'primary', 'zone': 'default'}"
 infranode1 openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 infranode2 openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-infranode3 openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
 
 [quotanodes]
 master1 openshift_node_labels="{'region':'master','zone':'default'}"
@@ -158,7 +157,6 @@ master3 openshift_node_labels="{'region':'master','zone':'default'}"
 node[01:${NODECOUNT}] openshift_node_labels="{'region': 'primary', 'zone': 'default'}"
 
 [misc]
-store1
 EOF
 
 
@@ -227,42 +225,6 @@ cat <<EOF > /home/${AUSERNAME}/quota.yml
     mount: fstype=xfs name=/var/lib/origin/openshift.local/volumes src=/dev/sdd backrefs=yes opts="gquota" state="mounted"
 EOF
 
-
-cat <<EOF > /home/${AUSERNAME}/setupiscsi.yml
-- hosts: all
-  vars:
-    description: "Subscribe OSE"
-  tasks:
-  - name: Install iscsi initiator utils
-    yum: name=iscsi-initiator-utils state=latest
-  - name: add new initiator name
-    lineinfile: dest=/etc/iscsi/initiatorname.iscsi create=yes regexp="InitiatorName=*" line="InitiatorName=iqn.2016-02.local.azure.nodes" state=present
-  - name: restart iscsid service
-    shell: systemctl restart iscsi
-    ignore_errors: yes
-  - name: Enable Iscsi
-    shell: systemctl enable iscsi
-    ignore_errors: yes
-  - name: Start iScsi Initiator  Service
-    shell: systemctl start iscsi
-    ignore_errors: yes
-  - name: Discover Devices on Iscsi  All Hosts
-    shell: iscsiadm --mode discovery --type sendtargets --portal store1
-    register: task_result
-    until: task_result.rc == 0
-    retries: 10
-    delay: 30
-    ignore_errors: yes
-  - name: Login All Hosts
-    shell: iscsiadm --mode node --portal store1 --login
-    register: task_result
-    until: task_result.rc == 0
-    retries: 10
-    delay: 30
-    ignore_errors: yes
-EOF
-
-
 cat <<EOF > /home/${AUSERNAME}/postinstall.yml
 ---
 - hosts: masters
@@ -291,7 +253,6 @@ wget http://master1:8443/api > healtcheck.out
 echo "${RESOURCEGROUP} Bastion Host is starting post-install playbooks"
 # ERR ansible-playbook /home/${AUSERNAME}/quota.yml
 ansible-playbook /home/${AUSERNAME}/postinstall.yml
-ansible-playbook /home/${AUSERNAME}/setupiscsi.yml
 cd /root
 mkdir .kube
 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${AUSERNAME}@master1:~/.kube/config /tmp/kube-config
@@ -300,7 +261,6 @@ mkdir /home/${AUSERNAME}/.kube
 cp /tmp/kube-config /home/${AUSERNAME}/.kube/config
 chown --recursive ${AUSERNAME} /home/${AUSERNAME}/.kube
 rm -f /tmp/kube-config
-ansible-playbook /home/${AUSERNAME}/setupiscsi.yml
 echo "${RESOURCEGROUP} Installation Is Complete"
 echo "${RESOURCEGROUP} Installation Is Complete" | mail -s "${RESOURCEGROUP} Install Complete" ${RHNUSERNAME} || true
 EOF

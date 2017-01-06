@@ -30,8 +30,8 @@
     },
     "numberOfNodes" : {
       "type" : "int",
-      "defaultValue" : 3,
-      "minValue" : 3,
+      "defaultValue" : 2,
+      "minValue" : 2,
       "maxValue" : 30,
       "metadata" : {
         "description" : "Number of Openshift Nodes to deploy (max 30)"
@@ -240,17 +240,6 @@
       "metadata" : {
         "description" : "SSH rsa private key file as a base64 string."
       }
-    },
-    "storeVMSize" : {
-      "type" : "string",
-      "defaultValue" : "Standard_DS3_v2",
-      "allowedValues" : [
-        "Standard_DS3_v2",
-        "Standard_DS12\t"
-      ],
-      "metadata" : {
-        "description" : "The size of the each Node Virtual Machine."
-      }
     }
   },
   "variables" : {
@@ -284,8 +273,7 @@
     },
     "baseVMachineTemplateUriBastion" : "[concat(variables('baseTemplateUrl'), 'bastion.json')]",
     "baseVMachineTemplateUriLogging" : "[concat(variables('baseTemplateUrl'), 'logging.json')]",
-    "tmApiVersion" : "2015-11-01",
-    "baseVMachineTemplateUriStore" : "[concat(variables('baseTemplateUrl'), 'store.json')]"
+    "tmApiVersion" : "2015-11-01"
   },
   "resources" : [
     {
@@ -844,52 +832,6 @@
       }
     },
     {
-      "name" : "store1",
-      "type" : "Microsoft.Resources/deployments",
-      "apiVersion" : "2013-03-01",
-      "dependsOn" : [
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
-        "[concat('Microsoft.Storage/storageAccounts/', variables('nodeStorageName'))]",
-        "[resourceId('Microsoft.Resources/deployments', 'logging')]"
-      ],
-      "properties" : {
-        "mode" : "Incremental",
-        "templateLink" : {
-          "uri" : "[variables('baseVMachineTemplateUriStore')]",
-          "contentVersion" : "1.0.0.0"
-        },
-        "parameters" : {
-          "vmName" : {
-            "value" : "store1"
-          },
-          "sa" : {
-            "value" : "[variables('nodeStorageName')]"
-          },
-          "subnetRef" : {
-            "value" : "[variables('nodeSubnetRef')]"
-          },
-          "vmSize" : {
-            "value" : "[parameters('storeVMSize')]"
-          },
-          "adminUsername" : {
-            "value" : "[parameters('adminUsername')]"
-          },
-          "sshKeyData" : {
-            "value" : "[parameters('sshKeyData')]"
-          },
-          "baseTemplateUrl" : {
-            "value" : "[variables('baseTemplateUrl')]"
-          },
-          "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
-          },
-          "sshPrivateData" : {
-            "value" : "[parameters('sshPrivateData')]"
-          }
-        }
-      }
-    },
-    {
       "name" : "infranode2",
       "type" : "Microsoft.Resources/deployments",
       "apiVersion" : "2013-03-01",
@@ -909,51 +851,6 @@
           },
           "dnsName" : {
             "value" : "[concat(resourceGroup().name,'i2')]"
-          },
-          "sa" : {
-            "value" : "[variables('infranodeStorageName')]"
-          },
-          "subnetRef" : {
-            "value" : "[variables('infranodeSubnetRef')]"
-          },
-          "vmSize" : {
-            "value" : "[parameters('infranodeVMSize')]"
-          },
-          "adminUsername" : {
-            "value" : "[parameters('adminUsername')]"
-          },
-          "sshKeyData" : {
-            "value" : "[parameters('sshKeyData')]"
-          },
-          "baseTemplateUrl" : {
-            "value" : "[variables('baseTemplateUrl')]"
-          },
-          "imageReference" : {
-            "value" : "[variables(parameters('image'))]"
-          }
-        }
-      }
-    },
-    {
-      "name" : "infranode3",
-      "type" : "Microsoft.Resources/deployments",
-      "apiVersion" : "2013-03-01",
-      "dependsOn" : [
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
-        "[concat('Microsoft.Storage/storageAccounts/', variables('infranodeStorageName'))]"
-      ],
-      "properties" : {
-        "mode" : "Incremental",
-        "templateLink" : {
-          "uri" : "[variables('baseVMachineTemplateUriInfranode')]",
-          "contentVersion" : "1.0.0.0"
-        },
-        "parameters" : {
-          "vmName" : {
-            "value" : "infranode3"
-          },
-          "dnsName" : {
-            "value" : "[concat(resourceGroup().name,'i3')]"
           },
           "sa" : {
             "value" : "[variables('infranodeStorageName')]"
@@ -1018,15 +915,6 @@
               "targetResourceId" : "[resourceId('Microsoft.Network/publicIPAddresses', 'infranode2pip')]",
               "endpointStatus" : "Enabled",
               "weight" : 2
-            }
-          },
-          {
-            "name" : "endpoint2",
-            "type" : "Microsoft.Network/trafficManagerProfiles/azureEndpoints",
-            "properties" : {
-              "targetResourceId" : "[resourceId('Microsoft.Network/publicIPAddresses', 'infranode3pip')]",
-              "endpointStatus" : "Enabled",
-              "weight" : 3
             }
           }
         ]
